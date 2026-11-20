@@ -138,4 +138,3 @@ with d2:
         pass
 
 st.caption("Designed by Mitali G | VELoop GPT Dashboard")
-EOF
