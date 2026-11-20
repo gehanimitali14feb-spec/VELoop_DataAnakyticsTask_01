@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>VELoop Rewards — Executive Analytics Portal</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    body { background-color: #FAF7F5; font-family: system-ui, -apple-system, sans-serif; color: #2B1810; }
+    .card { background: #FFFFFF; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.06); border: 1px solid #EFE6E1; }
+  </style>
+</head>
+<body class="p-6 md:p-10 max-w-7xl mx-auto">
+
+  <header class="text-center mb-8">
+    <h1 class="text-3xl md:text-4xl font-extrabold text-[#6E331B]">VELoop Rewards Analytics Portal</h1>
+    <p class="text-[#8C472A] mt-2 font-medium">Executive Telemetry & Performance Dashboard | Task 01</p>
+  </header>
+
+  <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
+    <div class="card p-5 text-center border-t-4 border-[#6E331B]">
+      <p class="text-xs uppercase tracking-wider text-gray-500 font-semibold">Total Users</p>
+      <h3 class="text-3xl font-extrabold text-[#6E331B] mt-1">1,000</h3>
+      <span class="text-xs text-green-600 font-medium">100% Validated</span>
+    </div>
+    <div class="card p-5 text-center border-t-4 border-[#8C472A]">
+      <p class="text-xs uppercase tracking-wider text-gray-500 font-semibold">30-Day Active Rate</p>
+      <h3 class="text-3xl font-extrabold text-[#8C472A] mt-1">100%</h3>
+      <span class="text-xs text-gray-500 font-medium">High Engagement</span>
+    </div>
+    <div class="card p-5 text-center border-t-4 border-[#B86B43]">
+      <p class="text-xs uppercase tracking-wider text-gray-500 font-semibold">Tasks Attempted</p>
+      <h3 class="text-3xl font-extrabold text-[#B86B43] mt-1">10,000</h3>
+      <span class="text-xs text-blue-600 font-medium">10 Tasks / User Avg</span>
+    </div>
+    <div class="card p-5 text-center border-t-4 border-[#DFA381]">
+      <p class="text-xs uppercase tracking-wider text-gray-500 font-semibold">Task Success Rate</p>
+      <h3 class="text-3xl font-extrabold text-[#6E331B] mt-1">57.0%</h3>
+      <span class="text-xs text-amber-600 font-medium">5,700 Completed</span>
+    </div>
+  </div>
+
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+    <div class="card p-6">
+      <h3 class="text-lg font-bold text-[#6E331B] mb-4">Total Users by Top Cities</h3>
+      <div class="h-64 flex justify-center"><canvas id="cityChart"></canvas></div>
+    </div>
+    <div class="card p-6">
+      <h3 class="text-lg font-bold text-[#6E331B] mb-4">User Acquisition by Channel</h3>
+      <div class="h-64 flex justify-center"><canvas id="acqChart"></canvas></div>
+    </div>
+    <div class="card p-6">
+      <h3 class="text-lg font-bold text-[#6E331B] mb-4">Task Execution Outcomes</h3>
+      <div class="h-64 flex justify-center"><canvas id="taskChart"></canvas></div>
+    </div>
+    <div class="card p-6">
+      <h3 class="text-lg font-bold text-[#6E331B] mb-4">Task Activity by Device Platform</h3>
+      <div class="h-64 flex justify-center"><canvas id="deviceChart"></canvas></div>
+    </div>
+  </div>
+
+  <div class="card p-6 mb-8">
+    <h3 class="text-lg font-bold text-[#6E331B] mb-3">Relational Star Schema Model</h3>
+    <div class="flex justify-center bg-gray-50 rounded-lg p-2 border border-gray-200">
+      <img src="VELoop_Logical_ER_Diagram.JPG" alt="Star Schema Architecture" class="max-h-[500px] object-contain rounded">
+    </div>
+  </div>
+
+  <div class="card p-6 mb-10 text-center">
+    <h3 class="text-lg font-bold text-[#6E331B] mb-2">Verified Project Deliverables</h3>
+    <div class="flex flex-wrap justify-center gap-4 mt-4">
+      <a href="VELoop_Analysis.pbix" download class="bg-[#6E331B] hover:bg-[#522411] text-white px-5 py-3 rounded-lg font-semibold shadow transition">⬇️ Download Power BI File (.pbix)</a>
+      <a href="VELoop_PowerBI_Master_Dataset.xlsx" download class="bg-[#8C472A] hover:bg-[#6E331B] text-white px-5 py-3 rounded-lg font-semibold shadow transition">⬇️ Download Cleaned Dataset (.xlsx)</a>
+    </div>
+  </div>
+
+  <footer class="text-center text-sm text-gray-500 py-4">Designed by Mitali G | VELoop Rewards Analytics Portal</footer>
+
+  <script>
+    new Chart(document.getElementById('cityChart'), {
+      type: 'doughnut',
+      data: {
+        labels: ['Kochi', 'Bhubaneswar', 'Hyderabad', 'Gaya', 'Ludhiana'],
+        datasets: [{ data: [174, 154, 85, 43, 40], backgroundColor: ['#6E331B', '#8C472A', '#B86B43', '#DFA381', '#EFE2D8'] }]
+      },
+      options: { responsive: true, maintainAspectRatio: false }
+    });
+    new Chart(document.getElementById('acqChart'), {
+      type: 'bar',
+      data: {
+        labels: ['Organic Search', 'Referral', 'Social Media', 'Paid Ads', 'Direct'],
+        datasets: [{ label: 'Users', data: [350, 270, 190, 120, 70], backgroundColor: '#8C472A' }]
+      },
+      options: { responsive: true, maintainAspectRatio: false }
+    });
+    new Chart(document.getElementById('taskChart'), {
+      type: 'pie',
+      data: {
+        labels: ['Completed (57%)', 'Failed / Abandoned (43%)'],
+        datasets: [{ data: [5700, 4300], backgroundColor: ['#6E331B', '#DFA381'] }]
+      },
+      options: { responsive: true, maintainAspectRatio: false }
+    });
+    new Chart(document.getElementById('deviceChart'), {
+      type: 'bar',
+      data: {
+        labels: ['Android', 'iOS', 'Web Desktop', 'Mobile Web'],
+        datasets: [{ label: 'Tasks Attempted', data: [5200, 3100, 1200, 500], backgroundColor: '#B86B43' }]
+      },
+      options: { responsive: true, maintainAspectRatio: false }
+    });
+  </script>
+</body>
+</html>
